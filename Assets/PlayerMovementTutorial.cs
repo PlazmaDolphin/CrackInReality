@@ -81,8 +81,9 @@ public class PlayerMovementTutorial : MonoBehaviour
 
     private void MovePlayer()
     {
-        // calculate movement direction
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        float rotY = orientation.rotation.eulerAngles.y;
+        // calculate movement direction using y rotation
+        moveDirection = Quaternion.Euler(0f, rotY, 0f) * new Vector3(horizontalInput, 0f, verticalInput);
 
         // on ground
         if(grounded)

@@ -20,9 +20,17 @@ public class ThirdPersonCam : MonoBehaviour
 
     private void Update()
     {
-        // rotate orientation
-        Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
-        orientation.forward = viewDir.normalized;
+        // rotate orientation based on mouse
+        float mouseX = Input.GetAxis("Mouse X") * rotationSpeed * Time.fixedDeltaTime;
+        orientation.Rotate(Vector3.up, mouseX);
+        float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed * Time.fixedDeltaTime;
+        // clamp Y to +/- 70
+        mouseY = Mathf.Clamp(mouseY, -70, 70);
+        orientation.Rotate(Vector3.left, mouseY);
+        //set rotation z to 0
+        orientation.rotation = Quaternion.Euler(orientation.rotation.eulerAngles.x, orientation.rotation.eulerAngles.y, 0);
+        //Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
+        //orientation.forward = viewDir.normalized;
 
         // rotate player object
         float horizontalInput = Input.GetAxis("Horizontal");
