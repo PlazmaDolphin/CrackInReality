@@ -13,13 +13,46 @@
     Prompt: Crack in Reality
     The Power of Flex Tape
     "To show you the power of flex tape, I sawed the fabric of reality in half!"
-    Tear in reality spits out cars and wind and shit
+    Tear in reality spits out cars
+    [OPTIONAL] Spits out wind when you get close
 
 2. Decide Win / Lose / Score Condition
     Goal = get to hole and patch it
+    Make crack texture
+    Make a particle emmitter that spits out cars
+    Player gets knocked back when car touches him
+    Player patches up hole and wins
+    [OPTIONAL] Player has to patch in multiple spots
+    [OPTIONAL] Patches take time to apply
+    Lose = ???
+        - Get hit by car too many times?
+        - Dead Zone closes in?
+        - Time Limit?
 
 3. Flesh out assets
-
+    Need:
+    - Crack in Reality (could be transparent png or 3D model)
+    - Cars (3D Model)
+    - Player (Basic shapes with face texture)
+    - Tape (3D Model)
+    - [OPTIONAL] Wind (Particle System)
+    - [OPTIONAL] BackGround City Skybox
+    - [OPTIONAL] Background Buildings (A bunch of large cubes, prevents player from wandering)
+    Sounds:
+    - Car honking
+    - Tape ripping
+    - Etherial Void Sound (???)
+    - Dramatic music
+    - [OPTIONAL] Player jump / hurt noise
+    UI:
+    - [OPTIONAL] Health Bar / Timer (depends on lose condition)
+    - Title Screen
+    - Win Screen
+    - [OPTIONAL] Tutorial Popup at start of game
+        - Deactivates upon any movement
+    - [OPTIONAL] Ranking on win screen
+    - Lose Screen
+    - [OPTIONAL] Intro Cinematic
 4. Submit to itch
 
 WHAT COUNTS AS TIME:
