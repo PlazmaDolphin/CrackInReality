@@ -8,7 +8,7 @@ public class PlayerMovementTutorial : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed;
 
-    public float groundDrag;
+    public float groundDrag, airDrag;
 
     public float jumpForce;
     public float jumpCooldown;
@@ -55,7 +55,7 @@ public class PlayerMovementTutorial : MonoBehaviour
         if (grounded)
             rb.linearDamping = groundDrag;
         else
-            rb.linearDamping = 0;
+            rb.linearDamping = airDrag;
     }
 
     private void FixedUpdate()
@@ -98,11 +98,19 @@ public class PlayerMovementTutorial : MonoBehaviour
     {
         Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
 
-        // limit velocity if needed
-        if(flatVel.magnitude > moveSpeed)
+        // player movement direction
+        Vector3 moveDirFlat = new Vector3(moveDirection.x, 0f, moveDirection.z).normalized;
+
+        if (moveDirFlat.sqrMagnitude < 0.01f) return;
+
+        // velocity component in movement direction
+        float speedInMoveDir = Vector3.Dot(flatVel, moveDirFlat);
+
+        // only clamp if the player is exceeding speed in their move direction
+        if (speedInMoveDir > moveSpeed)
         {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
+            float excessSpeed = speedInMoveDir - moveSpeed;
+            rb.linearVelocity -= moveDirFlat * excessSpeed;
         }
     }
 
